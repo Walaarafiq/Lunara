@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunara لمستحضرات التجميل</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: #333;
+            background-color: #fcfcfc;
+            overflow-x: hidden;
+        }
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d82c6c !important;
+            transition: color 0.3s ease;
+        }
+        .navbar-brand:hover {
+            color: #b9255c !important;
+        }
+        /* تعديل: تأثير التباين (Parallax) */
+        .hero-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('images/rouj.png') no-repeat center center fixed; /* إضافة كلمة fixed */
+            background-size: cover;
+            padding: 100px 0;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 240, 235, 0.2);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #d82c6c;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .btn-primary-custom {
+            background-color: #d82c6c;
+            border-color: #d82c6c;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary-custom:hover {
+            background-color: #c0255b;
+            border-color: #c0255b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(216, 44, 108, 0.4);
+        }
+
+        .features-section {
+            padding: 80px 0;
+            background-color: #fef0f4;
+        }
+        .feature-card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .feature-card .icon {
+            font-size: 3rem;
+            color: #d82c6c;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #444;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .product-showcase {
+            padding: 80px 0;
+            background-color: #fcfcfc;
+        }
+        .product-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .product-card-body {
+            padding: 25px;
+        }
+        .product-card h4 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #d82c6c;
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .add-to-cart-btn {
+            background-color: #d82c6c;
+            border-color: #d82c6c;
+            transition: all 0.3s ease;
+        }
+        .add-to-cart-btn:hover {
+            background-color: #c0255b;
+            border-color: #c0255b;
+        }
+        
+        .cta-section {
+            background-color: #d82c6c;
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        .btn-light-custom {
+            background-color: #fff;
+            color: #d82c6c;
+            border: 2px solid #fff;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn-light-custom:hover {
+            background-color: transparent;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .footer {
+            background-color: #333;
+            color: #f8f8f8;
+            padding: 50px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #f8f8f8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #d82c6c;
+        }
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section { padding: 80px 0; }
+            .hero-section h1 { font-size: 2.5rem; }
+            .hero-section p { font-size: 1rem; }
+            .cta-section h2 { font-size: 2.2rem; }
+            .features-section, .product-showcase, .cta-section, .footer { padding: 60px 0; }
+        }
+        
+        /* Scroll Animations CSS */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* New: Testimonials Section */
+        .testimonials-section {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+        .testimonial-card {
+            background-color: #fef0f4;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .testimonial-card .author {
+            font-weight: 700;
+            color: #d82c6c;
+        }
+        /* تنسيقات شريط البحث وعربة التسوق */
+.navbar .form-control {
+    border-radius: 50px;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    background-color: #f8f8f8;
+    border-color: #e0e0e0;
+}
+.navbar .btn-outline-dark {
+    border: none;
+    font-size: 1.5rem;
+    color: #d82c6c;
+}
+.navbar .badge {
+    font-size: 0.7rem;
+    padding: 0.35em 0.65em;
+}
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-light py-3 sticky-top" style="background-color: #fef0f4;">
+    <div class="container">
+        <a class="navbar-brand" href="#">Lunara</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#home">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">لماذا Lunara؟</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#products">منتجاتنا</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#testimonials">آراء العملاء</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">تواصل معنا</a>
+                </li>
+            </ul>
+            
+            <div class="d-flex align-items-center me-3">
+                <form class="d-flex me-3">
+                    <input class="form-control me-2" type="search" placeholder="ابحثي عن منتج..." aria-label="Search">
+                </form>
+                <button class="btn btn-outline-dark position-relative">
+                    <i class="bi bi-bag"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section id="home" class="hero-section">
+        <div class="container hero-content">
+            <h1>اكتشفي جمالك مع Lunara</h1>
+            <p class="lead">أحمر شفاه يمنحك إطلالة فريدة تدوم طويلاً وتُعزز ثقتك بنفسك. <br> ألوان جريئة، تركيبة غنية، وشعور لا يُنسى.</p>
+            <a href="#products" class="btn btn-primary-custom btn-lg">تصفحي مجموعتنا الآن</a>
+        </div>
+    </section>
+
+    <section id="features" class="features-section fade-in-on-scroll">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="color: #d82c6c;">لماذا تختارين Lunara؟</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon"><i class="bi bi-palette-fill"></i></div>
+                        <h3>ألوان غنية ومتنوعة</h3>
+                        <p>اكتشفي تشكيلة واسعة من الألوان التي تناسب جميع الإطلالات والمناسبات.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon"><i class="bi bi-heart-fill"></i></div>
+                        <h3>تركيبة مرطبة تدوم طويلاً</h3>
+                        <p>استمتعي بشفاه ناعمة ولون ثابت يدوم لساعات طويلة دون الحاجة لإعادة التطبيق.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="icon"><i class="bi bi-gem"></i></div>
+                        <h3>جودة فاخرة بسعر مناسب</h3>
+                        <p>نقدم لكِ أفضل الخامات وأجود التركيبات لتجربة فاخرة تستحقينها.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="product-showcase fade-in-on-scroll">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="color: #d82c6c;">اكتشفي أحدث مجموعات الروچ</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="images/ق2.jpg" alt="روج درجة جلامور">
+                        <div class="product-card-body">
+                            <h4>روج جلامور</h4>
+                            <p class="price">₪75.00</p>
+                            <!-- <a href="#" class="btn btn-primary-custom add-to-cart-btn">أضيفي للسلة</a> -->
+                             <a href="#" class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#quickViewModal">نظرة سريعة</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="images/r3.jpg" alt="روج درجة باشن">
+                        <div class="product-card-body">
+                            <h4>روج باشن</h4>
+                            <p class="price">₪80.00</p>
+                            <!-- <a href="#" class="btn btn-primary-custom add-to-cart-btn">أضيفي للسلة</a> -->
+                             <a href="#" class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#quickViewModal">نظرة سريعة</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <img src="images/r1.jpg" alt="روج درجة فيلفيت">
+                        <div class="product-card-body">
+                            <h4>روج فيلفيت</h4>
+                            <p class="price">₪70.00</p>
+                            <!-- <a href="#" class="btn btn-primary-custom add-to-cart-btn">أضيفي للسلة</a> -->
+                             <a href="#" class="btn btn-primary-custom" data-bs-toggle="modal" data-bs-target="#quickViewModal">نظرة سريعة</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="newsletter" class="newsletter-section fade-in-on-scroll">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-4" style="color: #d82c6c;">لا تفوّتي جديدنا!</h2>
+        <p class="lead mb-4">اشتركي في قائمتنا البريدية لتحصلي على أحدث العروض والمنتجات الحصرية.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="d-flex newsletter-form">
+                    <input type="email" class="form-control form-control-lg rounded-pill me-2" placeholder="أدخلي بريدك الإلكتروني" required>
+                    <button type="submit" class="btn btn-primary-custom btn-lg rounded-pill">اشتركي</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="testimonials" class="testimonials-section fade-in-on-scroll">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="color: #d82c6c;">آراء من عملاءنا</h2>
+            <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="testimonial-card">
+                            <p>"أحببت جودة أحمر الشفاه، فهو يدوم طوال اليوم دون أن يتلاشى. الألوان رائعة!"</p>
+                            <div class="author">- سارة محمد</div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <p>"منتجات Lunara فاخرة حقاً وتستحق كل قرش. لا أستخدم سواها الآن."</p>
+                            <div class="author">- ليلى أحمد</div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="testimonial-card">
+                            <p>"تركيبة مذهلة! لا تسبب جفاف الشفاه وتمنحني إطلالة جذابة دائمًا."</p>
+                            <div class="author">- مريم علي</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section fade-in-on-scroll">
+        <div class="container">
+            <h2>لا تفوّتي فرصة التألق!</h2>
+            <p>انضمي إلى عائلة Lunara واستمتعي بأروع ألوان أحمر الشفاه.</p>
+            <button type="button" class="btn btn-light-custom btn-lg" data-bs-toggle="modal" data-bs-target="#contactModal">
+                تحدثي معنا الآن
+            </button>
+        </div>
+    </section>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel" style="color: #d82c6c; font-weight: bold;">تحدثي معنا</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">الاسم الكامل</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">رسالتك</label>
+                            <textarea class="form-control" id="message" rows="3" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="btn btn-primary-custom">أرسلي الرسالة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>روچنا لمستحضرات التجميل</h5>
+                    <p>عنوان: غزة، قطاع غزة، فلسطين</p>
+                    <p>هاتف: +970591234567</p>
+                    <p>بريد إلكتروني: info@Lunara.com</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#features">عن Lunara</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="#testimonials">آراء العملاء</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>تابعينا</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-2"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.1);">
+            <p class="mb-0">&copy; 2024 Lunara لمستحضرات التجميل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+<div class="modal fade" id="quickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img src="images/ق2.jpg" class="img-fluid rounded" alt="صورة المنتج">
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="mb-3" style="color: #d82c6c;">اسم المنتج</h4>
+                        <p class="price fs-4 fw-bold">₪75.00</p>
+                        <p class="text-muted">
+                            هنا يمكن إضافة وصف تفصيلي للمنتج، مثل التركيبة، المكونات، والفوائد التي يقدمها. يمكنك تخصيص هذا الوصف لكل منتج.
+                        </p>
+                        <a href="#" class="btn btn-primary-custom mt-3">أضف للسلة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll Animation using Intersection Observer API
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Interactive "Add to Cart" Buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const originalText = this.innerHTML;
+                this.innerHTML = "أُضيف إلى السلة!";
+                this.style.backgroundColor = '#4CAF50';
+                this.style.borderColor = '#4CAF50';
+                this.disabled = true;
+
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.backgroundColor = '#d82c6c';
+                    this.style.borderColor = '#d82c6c';
+                    this.disabled = false;
+                }, 1500);
+            });
+        });
+    </script>
+    
+</body>
+</html>
